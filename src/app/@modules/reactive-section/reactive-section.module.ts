@@ -7,6 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material.module';
 import { ReactiveSectionComponent } from './reactive-section.component';
 import { PipeModule } from '../shared/pipe/pipe.module';
+import { KanbanBoardComponent } from './components/kanban-board/kanban-board.component';
+import { SharedModule } from '../shared/components/shared.module';
+import { KanbanDialogComponent } from './components/kanban-dialog/kanban-dialog.component';
 
 
 
@@ -15,6 +18,8 @@ import { PipeModule } from '../shared/pipe/pipe.module';
     BasicFormComponent,
     AdvanceFormComponent,
     ReactiveSectionComponent,
+    KanbanBoardComponent,
+    KanbanDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -22,10 +27,12 @@ import { PipeModule } from '../shared/pipe/pipe.module';
     ReactiveFormsModule,
     ReactiveSectionRoutingModule,
     MaterialModule,
-    PipeModule
+    PipeModule,
+    SharedModule
   ],
   exports: [
-    PipeModule
+    PipeModule,
+    SharedModule
   ],
 })
 export class ReactiveSectionModule { }

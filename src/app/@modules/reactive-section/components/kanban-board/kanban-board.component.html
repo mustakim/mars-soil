@@ -1,0 +1,23 @@
+  <div class="board board-wrapper board-columns">
+    <div cdkDropList cdkDropListOrientation="horizontal" class="board-columns" (cdkDropListDropped)="dropGrid($event)">
+      <div cdkDragLockAxis="x" class="board-column" *ngFor="let column of board.columns" cdkDrag>
+        <div class="column-title" cdkDragHandle>
+          {{ column.name }}
+          <span class="board-element-length">
+            {{ column.tasks.length }}
+          </span>
+        </div>
+        <div class="tasks-container" id="{{column.id}}" [cdkDropListConnectedTo]="boardColumnIndex" cdkDropList
+          [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
+          <div class="task" *ngFor="let item of column.tasks" cdkDrag>
+            {{ item }}
+          </div>
+        </div>
+        <div class="board-item-creator" (click)="addItemInBoard(column)"> Create an Item </div>
+      </div>
+      <div class="board-column-creator" (click)="addColumnInBoard()"> Create a column </div>
+    </div>
+  </div>
+  <!-- Board Print -->
+  <hr>
+  <pre>{{board | json}}</pre>
