@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../../../shared/material.module';
 
@@ -13,6 +13,7 @@ describe('AdvanceFormComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AdvanceFormComponent],
       imports: [
+        FormsModule,
         ReactiveFormsModule,
         MaterialModule,
         BrowserAnimationsModule
@@ -29,12 +30,10 @@ describe('AdvanceFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Form should be invalid', async () => {
-    component.formGroup.controls['Email'].setValue('');
-    component.formGroup.controls['Name'].setValue('');
-    component.formGroup.controls['Password'].setValue('');
-    component.formGroup.controls['Description'].setValue('');
-    component.formGroup.controls['Topic'].setValue('');
-    component.formGroup.controls['Checkbox'].setValue(false);
-  });
+  // testing number of elements in forms
+  it('Testing a form group element count', () => {
+    const formElement = fixture.debugElement.nativeElement.querySelector('#advanceForm');
+    const inputElements = formElement.querySelectorAll('input');
+    expect(inputElements.length).toEqual(7)
+  })
 });

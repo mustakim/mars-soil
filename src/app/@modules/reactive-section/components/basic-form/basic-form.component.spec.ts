@@ -26,7 +26,7 @@ describe('BasicFormComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeTruthy(); // checking if its created
   });
 
   it('should have Mr in Name', () => {

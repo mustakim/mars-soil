@@ -5,6 +5,7 @@ import { checkPassword } from '../../../../@helpers/form.helper';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { EnumGender } from 'src/app/@library/site.enum';
 
 @Component({
   selector: 'app-advance-form',
@@ -17,9 +18,11 @@ export class AdvanceFormComponent implements OnInit {
   formGroup: FormGroup = {} as FormGroup;
   dataSource: IFormElements[] = [];
   titleError: string = '';
-  displayedColumns: string[] = ['Name', 'Email', 'Password', 'Description', 'Topic', 'Checkbox'];
+  displayedColumns: string[] = ['Name', 'Gender', 'Email', 'Password', 'Description', 'Topic', 'Checkbox'];
   options: ITopic[] = [{ name: 'Business Analyze' }, { name: 'Development' }, { name: 'Testing' }];
   topicOptions: Observable<ITopic[]> = new Observable<ITopic[]>();
+  gender = EnumGender.Male;
+  genders: string[] = [EnumGender.Male, EnumGender.Female];
 
   get name() {
     return this.formGroup.get('Name') as FormControl
@@ -44,6 +47,7 @@ export class AdvanceFormComponent implements OnInit {
       'Email': [null, [Validators.required, Validators.pattern(emailregex)]],
       'Name': [null, Validators.required],
       'Password': [null, [Validators.required, checkPassword]],
+      'Gender': [EnumGender.Male, []],
       'Description': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
       'Topic': ['', []],
       'Checkbox': ''
@@ -65,6 +69,7 @@ export class AdvanceFormComponent implements OnInit {
   }
 
   onSubmit(data: IFormElements) {
+    data.Gender = this.gender;
     this.dataSource.push(data);
     this.snackBar.open(`Added data for ${data.Name}`, 'Okay', {
       horizontalPosition: 'end',

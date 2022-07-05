@@ -6,6 +6,7 @@ import { NamePerserPipe } from './name-perser-pipe/name-perser.pipe';
   declarations: [NamePerserPipe],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [NamePerserPipe],
 })
 export class PipeModule { }
