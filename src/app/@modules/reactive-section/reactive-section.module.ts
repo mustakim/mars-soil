@@ -10,6 +10,10 @@ import { PipeModule } from '../shared/pipe/pipe.module';
 import { KanbanBoardComponent } from './components/kanban-board/kanban-board.component';
 import { SharedModule } from '../shared/components/shared.module';
 import { KanbanDialogComponent } from './components/kanban-dialog/kanban-dialog.component';
+import { SocialAuthComponent } from './components/social-auth/social-auth.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../../../environments/environment';
+import { FirestoreModule } from '@angular/fire/firestore';
 
 
 
@@ -20,6 +24,7 @@ import { KanbanDialogComponent } from './components/kanban-dialog/kanban-dialog.
     ReactiveSectionComponent,
     KanbanBoardComponent,
     KanbanDialogComponent,
+    SocialAuthComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +33,9 @@ import { KanbanDialogComponent } from './components/kanban-dialog/kanban-dialog.
     ReactiveSectionRoutingModule,
     MaterialModule,
     PipeModule,
-    SharedModule
+    SharedModule,
+    FirestoreModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase))
   ],
   exports: [
     PipeModule,

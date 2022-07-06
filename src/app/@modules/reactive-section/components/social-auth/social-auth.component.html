@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="linkedin-btn">
+    <span>Login with</span>
+    <button (click)="loginWithLinkedIn()"><img src="assets/images/linkedin-icon.png" width="200" /> </button>
+  </div>
+  <div class="auth-code" *ngIf="authCode?.trim()">{{authCode}}</div>
+  <!-- <div class="linkedin-btn">
+    <span>Login with</span>
+    <button (click)="googleInit()"><img src="assets/images/google-icon.png" width="200" /> </button>
+  </div> -->
+</div>
