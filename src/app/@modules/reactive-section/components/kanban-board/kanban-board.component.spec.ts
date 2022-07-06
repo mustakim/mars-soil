@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from 'src/app/@modules/shared/material.module';
 
 import { KanbanBoardComponent } from './kanban-board.component';
 
@@ -8,9 +11,14 @@ describe('KanbanBoardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ KanbanBoardComponent ]
+      declarations: [KanbanBoardComponent],
+      imports: [
+        ReactiveFormsModule,
+        MaterialModule,
+        BrowserAnimationsModule
+      ],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(KanbanBoardComponent);
     component = fixture.componentInstance;
