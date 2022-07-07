@@ -11,7 +11,6 @@ export const environment = {
   },
   linkedInCredentials: {
     clientId: "77r9x7pr5d8nq7",
-    secretKey: "g6lvAWGog976ZVBu",
     redirectUrl: "http://localhost:4200/forms",
     scope: ["r_liteprofile"]
   },
