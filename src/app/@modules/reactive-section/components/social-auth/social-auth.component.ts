@@ -10,6 +10,7 @@ import { environment } from '../../../../../environments/environment';
 })
 export class SocialAuthComponent implements OnInit {
   facebookUserData: any;
+  googleData: any;
 
   get EnumSocialMedia() {
     return EnumSocialMedia;
@@ -17,7 +18,7 @@ export class SocialAuthComponent implements OnInit {
 
   @Input()
   linkedInAuthCode: string = '';
-  selectedSocialMedia: EnumSocialMedia = EnumSocialMedia.None;
+  selectedSocialMedia: EnumSocialMedia = EnumSocialMedia.LinkedIn;
 
   constructor(public socialService: SocialService) { }
 
@@ -29,7 +30,7 @@ export class SocialAuthComponent implements OnInit {
 
   loginWithLinkedIn() {
     this.selectedSocialMedia = EnumSocialMedia.LinkedIn;
-    if (!this.linkedInAuthCode.trim()) {
+    if (!this.linkedInAuthCode) {
       window.location.href =
         `https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=${environment.linkedInCredentials.clientId}&redirect_uri=${environment.linkedInCredentials.redirectUrl}&scope=${environment.linkedInCredentials.scope}`;
     }
@@ -39,6 +40,13 @@ export class SocialAuthComponent implements OnInit {
     this.selectedSocialMedia = EnumSocialMedia.Facebook;
     this.socialService.FacebookAuth().then((userData) => {
       this.facebookUserData = userData?.user ?? '';
+    })
+  }
+
+  loginWithGoogle() {
+    this.selectedSocialMedia = EnumSocialMedia.Google;
+    this.socialService.GoogleAuth().then((userData) => {
+      this.googleData = userData?.user ?? '';
     })
   }
 }

@@ -8,19 +8,29 @@
       <div class="social-btn">
         <button (click)="loginWithFacebook()"><img src="assets/images/facebook-icon.png" width="200" /></button>
       </div>
+      <div class="social-btn">
+        <button (click)="loginWithGoogle()"><img src="assets/images/google-icon.png" width="200" /></button>
+      </div>
     </div>
   </div>
   <div class="social-auth-child right-portion">
     <div class="top-banner right-side">Information</div>
     <!-- for linkedin -->
-    <div class="auth-message" *ngIf="selectedSocialMedia === EnumSocialMedia.None"> Please use social media button to
-      get data </div>
-    <div class="auth-code" *ngIf="selectedSocialMedia === EnumSocialMedia.LinkedIn && linkedInAuthCode?.trim()">
+    <div class="auth-code"
+      *ngIf="selectedSocialMedia === EnumSocialMedia.LinkedIn && linkedInAuthCode?.trim(); else message">
       {{linkedInAuthCode}}
     </div>
+    <ng-template #message>
+      <div class="auth-message" *ngIf="selectedSocialMedia === EnumSocialMedia.LinkedIn"> Please use social media button
+        to get data </div>
+    </ng-template>
     <!-- for facebook -->
     <div class="auth-code" *ngIf="selectedSocialMedia === EnumSocialMedia.Facebook && facebookUserData">
       <pre>{{facebookUserData | json}}</pre>
+    </div>
+    <!-- for facebook -->
+    <div class="auth-code" *ngIf="selectedSocialMedia === EnumSocialMedia.Google && googleData">
+      <pre>{{googleData | json}}</pre>
     </div>
   </div>
 </div>

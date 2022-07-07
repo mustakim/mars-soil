@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { FacebookAuthProvider } from 'firebase/auth';
-import * as auth from 'firebase/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
-  AngularFirestore,
-  AngularFirestoreDocument,
+  AngularFirestore
 } from '@angular/fire/compat/firestore';
-import { doc, Firestore, getDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +20,7 @@ export class SocialService {
     private httpClient: HttpClient,
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth, // Inject Firebase auth service
-  ) {
-
-  }
-
+  ) { }
 
   // Sign in with Facebook
   public FacebookAuth() {
@@ -39,6 +34,25 @@ export class SocialService {
       .signInWithPopup(provider)
       .then((result) => {
         return result;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  // Sign in with Google
+  GoogleAuth() {
+    return this.AuthLogin(new GoogleAuthProvider()).then((response) => {
+      return response;
+    })
+  }
+  // Auth logic to run auth providers
+  AuthLogin(provider: any) {
+    return this.afAuth
+      .signInWithPopup(provider)
+      .then((result) => {
+        console.log('You have been successfully logged in!');
+        return result
       })
       .catch((error) => {
         console.log(error);
