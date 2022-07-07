@@ -13,7 +13,6 @@ import { KanbanDialogComponent } from './components/kanban-dialog/kanban-dialog.
 import { SocialAuthComponent } from './components/social-auth/social-auth.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../../../environments/environment';
-import { FirestoreModule } from '@angular/fire/firestore';
 
 
 
@@ -34,12 +33,11 @@ import { FirestoreModule } from '@angular/fire/firestore';
     MaterialModule,
     PipeModule,
     SharedModule,
-    FirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase))
   ],
   exports: [
     PipeModule,
     SharedModule
-  ],
+  ]
 })
 export class ReactiveSectionModule { }

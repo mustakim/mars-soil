@@ -2,8 +2,8 @@
   <span class="fill-remaining-space">Basic Reactive Form with Material</span>
 </mat-toolbar>
 <mat-tab-group preserveContent>
-  <mat-tab label="Linkedin Auth">
-    <app-social-auth [authCode]="this.linkedInToken"></app-social-auth>
+  <mat-tab label="Social Auth">
+    <app-social-auth [linkedInAuthCode]="linkedInToken"></app-social-auth>
   </mat-tab>
   <mat-tab label="Basic">
     <app-basic-form></app-basic-form>

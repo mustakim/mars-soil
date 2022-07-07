@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SocialService } from 'src/app/@services/social.service';
 
 @Component({
   selector: 'app-reactive-section',
@@ -11,16 +10,10 @@ export class ReactiveSectionComponent implements OnInit {
 
   linkedInToken: string = "";
 
-  constructor(private route: ActivatedRoute, private socialService: SocialService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.linkedInToken = this.route.snapshot.queryParams["code"];
-
-    if (this.linkedInToken?.trim()) {
-      this.socialService.getInfo(this.linkedInToken).subscribe(data => {
-        console.info('data', data)
-      })
-    }
   }
 
 }
