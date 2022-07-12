@@ -38,15 +38,19 @@ export class SocialAuthComponent implements OnInit {
 
   loginWithFacebook() {
     this.selectedSocialMedia = EnumSocialMedia.Facebook;
-    this.socialService.FacebookAuth().then((userData) => {
-      this.facebookUserData = userData?.user ?? '';
-    })
+    if (!this.facebookUserData) {
+      this.socialService.FacebookAuth().then((userData) => {
+        this.facebookUserData = userData?.user ?? '';
+      })
+    }
   }
 
   loginWithGoogle() {
     this.selectedSocialMedia = EnumSocialMedia.Google;
-    this.socialService.GoogleAuth().then((userData) => {
-      this.googleData = userData?.user ?? '';
-    })
+    if (!this.googleData) {
+      this.socialService.GoogleAuth().then((userData) => {
+        this.googleData = userData?.user ?? '';
+      })
+    }
   }
 }
