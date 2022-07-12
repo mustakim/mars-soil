@@ -1,3 +1,4 @@
+import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexStroke, ApexXAxis, ApexYAxis } from "ng-apexcharts";
 import { EnumDialogType, EnumGender } from "./site.enum";
 
 export interface IFormElements {
@@ -29,3 +30,13 @@ export interface IDialogData {
   task: string;
   type?: EnumDialogType;
 }
+
+export interface IChartOptions {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
+  plotOptions: ApexPlotOptions;
+  dataLabels: ApexDataLabels;
+  stroke: ApexStroke;
+};

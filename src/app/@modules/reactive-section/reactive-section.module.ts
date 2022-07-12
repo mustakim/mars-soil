@@ -13,7 +13,16 @@ import { KanbanDialogComponent } from './components/kanban-dialog/kanban-dialog.
 import { SocialAuthComponent } from './components/social-auth/social-auth.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../../../environments/environment';
+import { AwesomeChartComponent } from './components/awesome-chart/awesome-chart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
 
+// Note we need a separate function as it's required
+// by the AOT compiler.
+export function playerFactory() {
+  return player;
+}
 
 
 @NgModule({
@@ -24,6 +33,7 @@ import { environment } from '../../../environments/environment';
     KanbanBoardComponent,
     KanbanDialogComponent,
     SocialAuthComponent,
+    AwesomeChartComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +43,8 @@ import { environment } from '../../../environments/environment';
     MaterialModule,
     PipeModule,
     SharedModule,
+    NgApexchartsModule,
+    LottieModule.forRoot({ player: playerFactory }),
     provideFirebaseApp(() => initializeApp(environment.firebase))
   ],
   exports: [

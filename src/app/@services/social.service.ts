@@ -13,8 +13,6 @@ import {
 })
 
 export class SocialService {
-  private LINKEDIN_API = environment.linkedinAPI + 'accessToken ';
-
 
   constructor(
     private httpClient: HttpClient,
